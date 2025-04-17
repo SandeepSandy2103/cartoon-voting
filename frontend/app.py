@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 
 # Backend URL
-BACKEND_URL = "http://localhost:8080"
+BACKEND_URL = "http://localhost:8081"
 
 # Set page configuration
 st.set_page_config(page_title="Cartoon Voting App", layout="centered")
