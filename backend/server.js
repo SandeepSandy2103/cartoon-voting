@@ -41,9 +41,7 @@ app.get('/cartoons', async (req, res) => {
         }));
 
         // Cache the result in Redis for 1 minute
-        await redisClient.set('cartoons', JSON.stringify(cartoonsWithImages), {
-            EX: 60 // 1 minute expiration
-        });
+        await redisClient.set('cartoons', JSON.stringify(cartoonsWithImages), 'EX', 60);
 
         res.json(cartoonsWithImages);
     } catch (error) {
@@ -96,9 +94,7 @@ app.get('/results', async (req, res) => {
         }));
 
         // Cache the results in Redis for 5 seconds
-        await redisClient.set('results', JSON.stringify(results), {
-            EX: 5 // 5 seconds expiration
-        });
+        await redisClient.set('results', JSON.stringify(results), 'EX', 5);
 
         res.json(results);
     } catch (error) {
