@@ -4,8 +4,8 @@ require('dotenv').config();
 
 // PostgreSQL Connection Pool
 const pool = new Pool({
-    host: process.env.POSTGRES_HOST || 'voting-app-postgres',
-    user: process.env.POSTGRES_USER || 'postgres',
+    host: process.env.POSTGRES_HOST || 'localhost',
+    user: process.env.POSTGRES_USER || 'postgres', 
     password: process.env.POSTGRES_PASSWORD || 'postgres',
     database: process.env.POSTGRES_DB || 'voting',
     port: 5432,
@@ -13,7 +13,7 @@ const pool = new Pool({
 
 // Redis Client
 const redisClient = new Redis({
-    host: process.env.REDIS_HOST || 'redis',
+    host: process.env.REDIS_HOST || 'localhost',
     port: process.env.REDIS_PORT || 6379,
 });
 
