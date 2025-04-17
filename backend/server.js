@@ -5,7 +5,7 @@ const { pool, redisClient, initializeDatabase } = require('./db');
 require('dotenv').config();
 
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8081;
 
 // Middleware
 app.use(cors());
@@ -108,6 +108,6 @@ app.get('/results', async (req, res) => {
 });
 
 // Start server
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+app.listen(port, '0.0.0.0', () => {
+    console.log(`Server running at http://0.0.0.0:${port}`);
 }); 
