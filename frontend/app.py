@@ -9,7 +9,7 @@ st.set_page_config(page_title="Cartoon Voting App", layout="centered")
 st.title("🎨 Vote for Your Favorite Cartoon!")
 
 # Function to fetch cartoons
-@st.cache_data(ttl=60)
+@st.cache_resource(ttl=60)
 def get_cartoons():
     try:
         res = requests.get(f"{BACKEND_URL}/cartoons")
@@ -28,7 +28,7 @@ def vote_cartoon(cartoon_id):
         st.error("❌ Failed to submit your vote. Please try again later.")
 
 # Function to fetch results
-@st.cache_data(ttl=5)
+@st.cache_resource(ttl=5)
 def get_results():
     try:
         res = requests.get(f"{BACKEND_URL}/results")
@@ -46,7 +46,7 @@ if cartoons:
     for idx, cartoon in enumerate(cartoons):
         with cols[idx]:
             # Display the cartoon image
-            st.image(cartoon['image_url'], caption=cartoon['name'], use_column_width=True)
+            st.image(cartoon['image_url'], caption=cartoon['name'], use_container_width=True)  # Updated parameter
             if st.button(f"Vote for {cartoon['name']}", key=cartoon['id']):
                 vote_cartoon(cartoon['id'])
                 st.success(f"✅ Thanks for voting for {cartoon['name']}!")
@@ -65,4 +65,4 @@ if results:
         st.text(f"{result['name']}: {result['percentage']}%")
         st.progress(float(result['percentage']) / 100)
 else:
-    st.warning("⚠️ No results available.") 
+    st.warning("⚠️ No results available.")
